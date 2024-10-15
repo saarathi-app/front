@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     description: "Connect with experienced mentors to advance your career and personal growth. Saarathi is launching soon!",
     images: [
       {
-        url: "https://www.saarathi.app/og-image.jpg",
+        url: "https://www.saarathi.app/og-image.png",
         width: 1200,
         height: 630,
         alt: "Saarathi - Expert Mentorship Platform",
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Saarathi - Expert Mentorship Platform",
     description: "Connect with experienced mentors to advance your career and personal growth. Saarathi is launching soon!",
-    images: ["https://www.saarathi.app/twitter-image.jpg"],
+    images: ["https://www.saarathi.app/twitter-image.png"],
     creator: "@saarathi",
   },
   robots: {
