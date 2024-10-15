@@ -9,7 +9,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { Input } from "@/components/ui/input";
+// import { Input } from "@/components/ui/input";
 import { Star, Search, Filter } from "lucide-react";
 
 // Dummy data for featured mentors
@@ -78,11 +78,11 @@ export default function Homepage() {
       {/* Search Bar */}
       <section className="max-w-4xl mx-auto -mt-8 relative z-10 bg-white p-6 rounded-lg shadow-lg">
         <div className="flex items-center space-x-4">
-          <Input
+          {/* <Input
             type="text"
             placeholder="Search for mentors..."
             className="flex-grow"
-          />
+          /> */}
           <Button>
             <Search className="mr-2 h-4 w-4" /> Search
           </Button>
