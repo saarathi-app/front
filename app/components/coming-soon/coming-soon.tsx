@@ -19,10 +19,10 @@ import { LightningBoltIcon } from "@radix-ui/react-icons";
 export default function ComingSoon() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [timeLeft, setTimeLeft] = useState({
-    days: 30,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
+    d: 100,
+    hr: 0,
+    min: 0,
+    sec: 0,
   });
 
   // Scroll progress calculation
@@ -43,29 +43,29 @@ export default function ComingSoon() {
     const timer = setInterval(() => {
       setTimeLeft((prevTime) => {
         if (
-          prevTime.days === 0 &&
-          prevTime.hours === 0 &&
-          prevTime.minutes === 0 &&
-          prevTime.seconds === 0
+          prevTime.d === 0 &&
+          prevTime.hr === 0 &&
+          prevTime.min === 0 &&
+          prevTime.sec === 0
         ) {
           clearInterval(timer);
           return prevTime;
         }
         const newTime = { ...prevTime };
-        if (newTime.seconds > 0) {
-          newTime.seconds--;
-        } else if (newTime.minutes > 0) {
-          newTime.minutes--;
-          newTime.seconds = 59;
-        } else if (newTime.hours > 0) {
-          newTime.hours--;
-          newTime.minutes = 59;
-          newTime.seconds = 59;
-        } else if (newTime.days > 0) {
-          newTime.days--;
-          newTime.hours = 23;
-          newTime.minutes = 59;
-          newTime.seconds = 59;
+        if (newTime.sec > 0) {
+          newTime.sec--;
+        } else if (newTime.min > 0) {
+          newTime.min--;
+          newTime.sec = 59;
+        } else if (newTime.hr > 0) {
+          newTime.hr--;
+          newTime.min = 59;
+          newTime.sec = 59;
+        } else if (newTime.d > 0) {
+          newTime.d--;
+          newTime.hr = 23;
+          newTime.min = 59;
+          newTime.sec = 59;
         }
         return newTime;
       });
