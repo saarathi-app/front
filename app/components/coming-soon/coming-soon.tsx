@@ -82,7 +82,7 @@ export default function ComingSoon() {
       />
 
       {/* Hero Section */}
-      <motion.section 
+      <motion.section
         className="relative min-h-screen flex flex-col items-center justify-center text-center px-4 py-12 bg-gradient-to-br from-blue-50 to-purple-50"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -93,13 +93,17 @@ export default function ComingSoon() {
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.5, duration: 0.8 }}
         >
-          <RocketIcon className="w-16 h-16 md:w-24 md:h-24 mb-6 text-blue-500" aria-hidden="true" />
+          <RocketIcon
+            className="w-16 h-16 md:w-24 md:h-24 mb-6 text-blue-500"
+            aria-hidden="true"
+          />
         </motion.div>
         <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600">
-          Saarathi is Coming Soon
+          Saarathi : Mentoring Nepal
         </h1>
         <p className="text-base md:text-lg lg:text-2xl mb-10 text-gray-600 max-w-2xl">
-          Your journey to expert mentorship starts here. Stay tuned!
+          Nepal's first mentorship platform for career guidance & academic and
+          skill development. Stay tuned!
         </p>
         <Button
           variant="default"
@@ -110,7 +114,10 @@ export default function ComingSoon() {
       </motion.section>
 
       {/* Countdown Timer Section */}
-      <section className="py-12 md:py-16 px-4 bg-white" aria-label="Countdown Timer">
+      <section
+        className="py-12 md:py-16 px-4 bg-white"
+        aria-label="Countdown Timer"
+      >
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-2xl md:text-3xl font-semibold mb-8 text-gray-800">
             Launching in
@@ -121,7 +128,11 @@ export default function ComingSoon() {
                 key={unit}
                 className="bg-gradient-to-br from-blue-500 to-purple-500 text-white p-3 md:p-4 rounded-lg shadow-md"
                 animate={{ scale: [1, 1.05, 1] }}
-                transition={{ duration: 0.5, repeat: Infinity, repeatDelay: 0.5 }}
+                transition={{
+                  duration: 0.5,
+                  repeat: Infinity,
+                  repeatDelay: 0.5,
+                }}
               >
                 <div className="text-xl md:text-3xl">{value}</div>
                 <div className="text-xs md:text-sm">{unit}</div>
@@ -132,7 +143,10 @@ export default function ComingSoon() {
       </section>
 
       {/* About Us Section */}
-      <section className="py-12 md:py-16 px-4 bg-gray-50" aria-label="About Saarathi">
+      <section
+        className="py-12 md:py-16 px-4 bg-gray-50"
+        aria-label="About Saarathi"
+      >
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">
             About Saarathi
@@ -148,7 +162,10 @@ export default function ComingSoon() {
       </section>
 
       {/* How We're Solving Problems Section */}
-      <section className="py-12 md:py-16 px-4 bg-white" aria-label="Our Solutions">
+      <section
+        className="py-12 md:py-16 px-4 bg-white"
+        aria-label="Our Solutions"
+      >
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-900">
             How We&apos;re Solving Problems
@@ -191,7 +208,9 @@ export default function ComingSoon() {
                   <h3 className="text-lg md:text-xl font-semibold mb-2 text-gray-800">
                     {item.title}
                   </h3>
-                  <p className="text-sm md:text-base text-gray-600">{item.description}</p>
+                  <p className="text-sm md:text-base text-gray-600">
+                    {item.description}
+                  </p>
                 </Card>
               </motion.div>
             ))}
@@ -200,7 +219,10 @@ export default function ComingSoon() {
       </section>
 
       {/* How You'll Benefit Section */}
-      <section className="py-12 md:py-16 px-4 bg-gradient-to-br from-blue-50 to-purple-50" aria-label="Benefits">
+      <section
+        className="py-12 md:py-16 px-4 bg-gradient-to-br from-blue-50 to-purple-50"
+        aria-label="Benefits"
+      >
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-900">
             How You&apos;ll Benefit
@@ -250,7 +272,9 @@ export default function ComingSoon() {
                   <h3 className="text-lg md:text-2xl font-semibold mb-4 text-gray-800">
                     {item.title}
                   </h3>
-                  <p className="text-sm md:text-base text-gray-600">{item.description}</p>
+                  <p className="text-sm md:text-base text-gray-600">
+                    {item.description}
+                  </p>
                 </Card>
               </motion.div>
             ))}

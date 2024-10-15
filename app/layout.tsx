@@ -15,7 +15,7 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: {
-    default: "Saarathi - Expert Mentorship Platform",
+    default: "Saarathi - Nepal's First Mentorship Platform",
     template: "%s | Saarathi",
   },
   description: "Connect with experienced mentors to advance your career and personal growth. Saarathi is launching soon!",
@@ -26,20 +26,20 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://www.saarathi.app",
     siteName: "Saarathi",
-    title: "Saarathi - Expert Mentorship Platform",
+    title: "Saarathi - Nepal's First Mentorship Platform",
     description: "Connect with experienced mentors to advance your career and personal growth. Saarathi is launching soon!",
     images: [
       {
         url: "https://www.saarathi.app/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Saarathi - Expert Mentorship Platform",
+        alt: "Saarathi - Nepal's First Mentorship Platform",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Saarathi - Expert Mentorship Platform",
+    title: "Saarathi - Nepal's First Mentorship Platform",
     description: "Connect with experienced mentors to advance your career and personal growth. Saarathi is launching soon!",
     images: ["https://www.saarathi.app/twitter-image.png"],
     creator: "@saarathi",
