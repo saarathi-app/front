@@ -5,9 +5,9 @@ import { NextResponse } from 'next/server'
 //   server: process.env.MAILCHIMP_API_SERVER, // e.g. us1
 // })
 
-export async function POST(request: Request) {
+export async function POST(_request: Request) {
   try {
-    const { email } = await request.json()
+    // const { email } = await request.json()
 
     // await mailchimp.lists.addListMember(process.env.MAILCHIMP_LIST_ID!, {
     //   email_address: email,
