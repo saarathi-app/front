@@ -69,8 +69,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${titilliumWeb.variable} font-sans`}>
-      <body>{children}</body>
+    <html 
+      lang="en" 
+      className={`${titilliumWeb.variable} ${geistSans.variable} ${geistMono.variable}`}
+    >
+      <body className="font-titillium">{children}</body>
     </html>
   );
 }
