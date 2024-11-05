@@ -57,10 +57,17 @@ export async function GET() {
     const sheet = await getDoc();
     const rows = await sheet.getRows();
     
+    // Get unique industries (excluding N/A and empty values)
+    const uniqueIndustries = new Set(
+      rows
+        .map(row => row.get('industry'))
+        .filter(industry => industry && industry !== 'N/A')
+    );
+    
     const stats = {
       mentors: rows.filter(row => row.get('type') === 'mentor').length,
       mentees: rows.filter(row => row.get('type') === 'mentee').length,
-      industries: Math.ceil(rows.length / 10), // Rough estimate
+      industries: uniqueIndustries.size, // Use actual count of unique industries
       waitlist: rows.length,
     };
 
