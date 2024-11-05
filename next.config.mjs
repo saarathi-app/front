@@ -1,7 +1,18 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  reactStrictMode: true,
+  transpilePackages: ['framer-motion', 'lucide-react'],
   images: {
-    domains: ['saarathi.app'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'saarathi.app',
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      }
+    ],
   },
   async headers() {
     return [
