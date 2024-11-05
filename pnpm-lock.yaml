@@ -39,7 +39,7 @@ importers:
         specifier: ^8.3.0
         version: 8.3.1(react@18.3.1)
       framer-motion:
-        specifier: ^11.11.8
+        specifier: ^11.11.11
         version: 11.11.11(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       google-auth-library:
         specifier: ^9.14.2

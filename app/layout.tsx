@@ -20,11 +20,8 @@ const titilliumWeb = Titillium_Web({
 });
 
 export const metadata: Metadata = {
-  title: {
-    default: "Saarathi - Nepal's First Mentorship Platform",
-    template: "%s | Saarathi",
-  },
-  description: "Connect with experienced mentors to advance your career and personal growth. Saarathi is launching soon!",
+  title: "Saarathi - Unlock Your Potential with Expert Mentors",
+  description: "Connect with industry experts and accelerate your personal and professional growth through personalized mentorship.",
   keywords: ["mentorship", "career development", "professional growth", "expert advice"],
   authors: [{ name: "Saarathi Team" }],
   openGraph: {
@@ -32,21 +29,21 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://www.saarathi.app",
     siteName: "Saarathi",
-    title: "Saarathi - Nepal's First Mentorship Platform",
-    description: "Connect with experienced mentors to advance your career and personal growth. Saarathi is launching soon!",
+    title: "Saarathi - Unlock Your Potential with Expert Mentors",
+    description: "Connect with industry experts and accelerate your personal and professional growth through personalized mentorship.",
     images: [
       {
         url: "https://www.saarathi.app/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Saarathi - Nepal's First Mentorship Platform",
+        alt: "Saarathi - Unlock Your Potential with Expert Mentors",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Saarathi - Nepal's First Mentorship Platform",
-    description: "Connect with experienced mentors to advance your career and personal growth. Saarathi is launching soon!",
+    title: "Saarathi - Unlock Your Potential with Expert Mentors",
+    description: "Connect with industry experts and accelerate your personal and professional growth through personalized mentorship.",
     images: ["https://www.saarathi.app/twitter-image.png"],
     creator: "@saarathi",
   },

@@ -1,11 +1,11 @@
 import { Metadata } from 'next';
-import Homepage from "./components/home/homepage";
+import Homepage from "../components/home/homepage";
 
 export const metadata: Metadata = {
-  title: "Saarathi Nepal",
+  title: "Saarathi - Home",
   description: "Connect with expert mentors and accelerate your growth with Saarathi.",
 };
 
-export default function Home() {
+export default function HomeRoute() {
   return <Homepage />;
-}
+} 
