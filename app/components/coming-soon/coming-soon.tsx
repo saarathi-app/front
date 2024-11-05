@@ -17,6 +17,27 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
+// Add industries array at the top of the file
+const INDUSTRIES = [
+  "Software Development",
+  "Data Science",
+  "UI/UX Design",
+  "Product Management",
+  "Digital Marketing",
+  "Business Strategy",
+  "Finance",
+  "Healthcare",
+  "Education",
+  "Other"
+] as const;
 
 export default function ComingSoon() {
   const [timeLeft, setTimeLeft] = useState(() => {
@@ -35,6 +56,13 @@ export default function ComingSoon() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isSubscribed, setIsSubscribed] = useState(false);
   const [signupType, setSignupType] = useState<"mentee" | "mentor">("mentee");
+  const [isLoading, setIsLoading] = useState(false);
+  const [stats, setStats] = useState({
+    mentors: 0,
+    industries: 0,
+    waitlist: 0,
+  });
+  const [industry, setIndustry] = useState<string>("");
 
   // Modified countdown timer logic
   useEffect(() => {
@@ -61,35 +89,65 @@ export default function ComingSoon() {
     return () => clearInterval(timer);
   }, []);
 
+  // Fetch stats on component mount
+  useEffect(() => {
+    async function fetchStats() {
+      try {
+        const response = await fetch('/api/subscribe');
+        const data = await response.json();
+        if (data) {
+          setStats(data);
+        }
+      } catch (error) {
+        console.error('Error fetching stats:', error);
+      }
+    }
+    fetchStats();
+  }, []);
+
   const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically send the email to your backend
-    // For now, we'll just simulate success
-    setIsSubscribed(true);
-    setTimeout(() => setIsDialogOpen(false), 2000);
+    setIsLoading(true);
+
+    try {
+      const response = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email,
+          type: signupType,
+          industry: signupType === 'mentor' ? industry : undefined, // Only send industry for mentors
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to subscribe');
+      }
+
+      setIsSubscribed(true);
+      setTimeout(() => setIsDialogOpen(false), 2000);
+
+      // Refresh stats after successful subscription
+      const statsResponse = await fetch('/api/subscribe');
+      const newStats = await statsResponse.json();
+      if (newStats) {
+        setStats(newStats);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Failed to subscribe. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
   };
-
-  // Dynamic stats calculation
-  const calculateStats = () => {
-    const launchDate = new Date("2025-01-01");
-    const today = new Date();
-    const daysDiff = Math.floor(
-      (launchDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24)
-    );
-
-    return {
-      mentors: Math.max(50 - Math.floor(daysDiff / 2), 0),
-      industries: Math.max(15 - Math.floor(daysDiff / 30), 0),
-      waitlist: Math.max(200 - daysDiff * 2, 0),
-    };
-  };
-
-  const stats = calculateStats();
 
   // Add handler for "Become a Mentor" button
   const handleMentorClick = () => {
     setSignupType("mentor");
     setEmail("");
+    setIndustry("");
     setIsDialogOpen(true);
   };
 
@@ -368,9 +426,32 @@ export default function ComingSoon() {
               required
               className="bg-white/5 border-[#00F5EE]/20 text-white placeholder:text-gray-400 h-12 rounded-lg"
             />
+            {signupType === "mentor" && (
+              <Select
+                value={industry}
+                onValueChange={setIndustry}
+                required
+              >
+                <SelectTrigger className="bg-white/5 border-[#00F5EE]/20 text-white h-12 rounded-lg">
+                  <SelectValue placeholder="Select your industry" />
+                </SelectTrigger>
+                <SelectContent className="bg-[#16153A] border-[#00F5EE]/20">
+                  {INDUSTRIES.map((ind) => (
+                    <SelectItem
+                      key={ind}
+                      value={ind}
+                      className="text-white hover:bg-white/10"
+                    >
+                      {ind}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            )}
             <Button
               type="submit"
-              className="w-full bg-[#00F5EE] text-[#16153A] hover:bg-[#00F5EE]/90 py-3 rounded-lg font-semibold"
+              disabled={signupType === "mentor" && !industry}
+              className="w-full bg-[#00F5EE] text-[#16153A] hover:bg-[#00F5EE]/90 py-3 rounded-lg font-semibold disabled:opacity-50"
             >
               {isSubscribed ? "You're on the list! 🎉" : "Get Early Access"}
             </Button>
