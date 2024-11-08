@@ -358,7 +358,7 @@ export default function ComingSoon() {
                 Our Mission
               </h2>
               <p className="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto">
-                To revolutionize mentorship in Nepal by creating an accessible,
+                To revolutionize mentorship globally by creating an accessible,
                 AI-powered platform that connects ambitious individuals with
                 experienced mentors, fostering growth and innovation across
                 industries.

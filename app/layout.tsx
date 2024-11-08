@@ -22,16 +22,21 @@ const titilliumWeb = Titillium_Web({
 
 export const metadata: Metadata = {
   title: {
-    default: "Saarathi - Nepal's First Mentorship Platform",
+    default: "Saarathi - AI-Powered Global Mentorship Platform",
     template: "%s | Saarathi",
   },
-  description:
-    "Connect with experienced mentors to advance your career and personal growth. Saarathi is launching soon!",
+  description: "Connect with expert mentors globally. Saarathi is revolutionizing mentorship with AI-powered matching, personalized guidance, and skill development tracking.",
   keywords: [
-    "mentorship",
-    "career development",
-    "professional growth",
-    "expert advice",
+    "mentorship platform",
+    "global mentors",
+    "career guidance",
+    "professional development",
+    "expert mentorship",
+    "skill development",
+    "AI-powered mentoring",
+    "career growth",
+    "professional mentors",
+    "international mentorship"
   ],
   authors: [{ name: "Saarathi Team" }],
   openGraph: {
@@ -39,25 +44,23 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://www.saarathi.app",
     siteName: "Saarathi",
-    title: "Saarathi - Nepal's First Mentorship Platform",
-    description:
-      "Connect with experienced mentors to advance your career and personal growth. Saarathi is launching soon!",
+    title: "Saarathi - AI-Powered Global Mentorship Platform",
+    description: "Connect with expert mentors globally. Saarathi is revolutionizing mentorship with AI-powered matching and personalized guidance.",
     images: [
       {
         url: "https://www.saarathi.app/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Saarathi - Nepal's First Mentorship Platform",
+        alt: "Saarathi - AI-Powered Global Mentorship Platform",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Saarathi - Nepal's First Mentorship Platform",
-    description:
-      "Connect with experienced mentors to advance your career and personal growth. Saarathi is launching soon!",
+    title: "Saarathi - AI-Powered Global Mentorship Platform",
+    description: "Connect with expert mentors globally. Join Saarathi for personalized mentorship and career guidance.",
     images: ["https://www.saarathi.app/twitter-image.png"],
-    creator: "@saarathi",
+    creator: "@saarathi_app",
   },
   robots: {
     index: true,
@@ -69,6 +72,11 @@ export const metadata: Metadata = {
       "max-image-preview": "large",
       "max-snippet": -1,
     },
+  },
+  verification: {
+    google: "your-google-verification-code",
+    yandex: "your-yandex-verification-code",
+    bing: "your-bing-verification-code",
   },
 };
 
