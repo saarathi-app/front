@@ -103,16 +103,16 @@ export default function MentorProfile() {
   return (
     <div className="min-h-screen bg-[#16143B] py-8 px-4 text-white">
       {/* Profile Header */}
-      <div className="flex items-center space-x-6 mb-8 max-w-5xl mx-auto">
+      <div className="flex items-center max-w-5xl mx-auto mb-8 space-x-6">
         <Image
           alt="Mentor's image"
           src="/placeholder-avatar.jpg"
           width={128}
           height={128}
-          className="w-32 h-32 rounded-full border-4 object-cover border-green-500"
+          className="object-cover w-32 h-32 border-4 border-green-500 rounded-full"
         />
         <div className="space-y-2">
-          <h1 className="text-green-500 text-3xl font-bold">{mentor.name}</h1>
+          <h1 className="text-3xl font-bold text-green-500">{mentor.name}</h1>
           <div className="flex items-center space-x-2 text-gray-300">
             <MapPin size={16} />
             <span>{mentor.address}</span>
@@ -130,7 +130,7 @@ export default function MentorProfile() {
             {mentor.expertise.map((skill) => (
               <span
                 key={skill}
-                className="px-3 py-1 bg-green-500/20 rounded-full text-sm"
+                className="px-3 py-1 text-sm rounded-full bg-green-500/20"
               >
                 {skill}
               </span>
@@ -140,17 +140,17 @@ export default function MentorProfile() {
       </div>
 
       {/* About Section */}
-      <div className="mb-8 max-w-5xl mx-auto">
-        <h2 className="text-2xl font-semibold mb-4">About Me</h2>
+      <div className="max-w-5xl mx-auto mb-8">
+        <h2 className="mb-4 text-2xl font-semibold">About Me</h2>
         <p className="text-gray-300">{mentor.bio}</p>
-        <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 gap-4 mt-6 md:grid-cols-2">
           <div>
-            <h3 className="font-semibold mb-2">Languages</h3>
+            <h3 className="mb-2 font-semibold">Languages</h3>
             <div className="flex flex-wrap gap-2">
               {mentor.languages.map((lang) => (
                 <span
                   key={lang}
-                  className="px-3 py-1 bg-blue-500/20 rounded-full text-sm"
+                  className="px-3 py-1 text-sm rounded-full bg-blue-500/20"
                 >
                   {lang}
                 </span>
@@ -158,7 +158,7 @@ export default function MentorProfile() {
             </div>
           </div>
           <div>
-            <h3 className="font-semibold mb-2">Certifications</h3>
+            <h3 className="mb-2 font-semibold">Certifications</h3>
             {mentor.certifications.map((cert) => (
               <div
                 key={cert.name}
@@ -176,27 +176,27 @@ export default function MentorProfile() {
 
       {/* Session Details */}
       <div className="mb-8">
-        <h2 className="text-2xl font-semibold mb-4 text-center">
+        <h2 className="mb-4 text-2xl font-semibold text-center">
           Book a Session
         </h2>
-        <div className="flex flex-col md:flex-row items-center justify-center gap-6">
+        <div className="flex flex-col items-center justify-center gap-6 md:flex-row">
           {/* Individual Sessions Card */}
           <Card className="bg-white/5 border-0 w-full md:w-[450px]">
             <CardContent className="p-6">
               <div className="flex flex-col h-full">
-                <h3 className="text-xl font-semibold mb-2">
+                <h3 className="mb-2 text-xl font-semibold">
                   Individual Session
                 </h3>
                 <div className="flex items-baseline mb-4">
                   <span className="text-3xl font-bold text-green-500">
                     ${mentor.sessionTypes.individual.price}
                   </span>
-                  <span className="text-gray-400 ml-2">/hour</span>
+                  <span className="ml-2 text-gray-400">/hour</span>
                 </div>
-                <p className="text-gray-300 mb-4">
+                <p className="mb-4 text-gray-300">
                   {mentor.sessionTypes.individual.description}
                 </p>
-                <div className="space-y-3 mb-6 flex-grow">
+                <div className="flex-grow mb-6 space-y-3">
                   {mentor.sessionTypes.individual.benefits.map((benefit) => (
                     <div
                       key={benefit}
@@ -218,20 +218,20 @@ export default function MentorProfile() {
           <Card className="bg-white/5 border-0 w-full md:w-[450px]">
             <CardContent className="p-6">
               <div className="flex flex-col h-full">
-                <h3 className="text-xl font-semibold mb-2">Group Session</h3>
+                <h3 className="mb-2 text-xl font-semibold">Group Session</h3>
                 <div className="flex items-baseline mb-4">
                   <span className="text-3xl font-bold text-green-500">
                     ${mentor.sessionTypes.group.price}
                   </span>
-                  <span className="text-gray-400 ml-2">/hour per person</span>
+                  <span className="ml-2 text-gray-400">/hour per person</span>
                 </div>
-                <p className="text-gray-300 mb-2">
+                <p className="mb-2 text-gray-300">
                   {mentor.sessionTypes.group.description}
                 </p>
-                <p className="text-sm text-gray-400 mb-4">
+                <p className="mb-4 text-sm text-gray-400">
                   Max {mentor.sessionTypes.group.maxSize} participants
                 </p>
-                <div className="space-y-3 mb-6 flex-grow">
+                <div className="flex-grow mb-6 space-y-3">
                   {mentor.sessionTypes.group.benefits.map((benefit) => (
                     <div
                       key={benefit}
@@ -253,7 +253,7 @@ export default function MentorProfile() {
 
       {/* Testimonials Section */}
       <div className="mb-8">
-        <h2 className="text-2xl font-semibold mb-6 text-center">
+        <h2 className="mb-6 text-2xl font-semibold text-center">
           What My Mentees Say
         </h2>
         <Carousel
@@ -267,13 +267,13 @@ export default function MentorProfile() {
             {mentor.testimonials.map((testimonial) => (
               <CarouselItem
                 key={testimonial.id}
-                className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3 flex items-center"
+                className="flex items-center pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3"
               >
-                <Card className="bg-white/5 border-0 h-full">
-                  <CardContent className="p-6 flex flex-col justify-between h-full">
+                <Card className="h-full border-0 bg-white/5">
+                  <CardContent className="flex flex-col justify-between h-full p-6">
                     <div className="flex flex-col space-y-4">
                       {/* Rating */}
-                      <div className="flex text-yellow-400 justify-center">
+                      <div className="flex justify-center text-yellow-400">
                         {[...Array(5)].map((_, i) => (
                           <FaStar
                             key={i}
@@ -286,8 +286,8 @@ export default function MentorProfile() {
                         ))}
                       </div>
                       {/* Content */}
-                      <p className="text-gray-300 line-clamp-4 text-center">
-                        "{testimonial.content}"
+                      <p className="text-center text-gray-300 line-clamp-4">
+                        {`"${testimonial.content}"`} 
                       </p>
                       {/* Author */}
                       <div className="mt-4 text-center">
@@ -309,12 +309,12 @@ export default function MentorProfile() {
             <CarouselPrevious
               className="absolute left-[-20px] top-1/2 transform -translate-y-1/2 bg-green-500/20 hover:bg-green-500/30 border-none text-white"
               variant="outline"
-              data-carousel-prev
+              data-carousel-prev={true}
             />
             <CarouselNext
               className="absolute right-[-20px] top-1/2 transform -translate-y-1/2 bg-green-500/20 hover:bg-green-500/30 border-none text-white"
               variant="outline"
-              data-carousel-next
+              data-carousel-next={true}
             />
           </div>
         </Carousel>

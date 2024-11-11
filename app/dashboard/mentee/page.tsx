@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { useState } from "react"
+import { useState } from "react";
 import {
   Calendar,
   Users,
@@ -10,9 +10,9 @@ import {
   Star,
   Target,
   Clock,
-} from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -20,13 +20,13 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Input } from "@/components/ui/input"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import Image from "next/image"
-import { Progress } from "@/components/ui/progress"
-import { Badge } from "@/components/ui/badge"
-import { Sidebar } from "@/app/components/dashboard/sidebar"
+} from "@/components/ui/dropdown-menu";
+import { Input } from "@/components/ui/input";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import Image from "next/image";
+import { Progress } from "@/components/ui/progress";
+import { Badge } from "@/components/ui/badge";
+import { Sidebar } from "@/app/components/dashboard/sidebar";
 
 // Mock data for demonstration
 const upcomingSessions = [
@@ -43,7 +43,7 @@ const upcomingSessions = [
     status: "confirmed",
   },
   // ... more sessions
-]
+];
 
 const recommendedMentors = [
   {
@@ -55,7 +55,7 @@ const recommendedMentors = [
     hourlyRate: 75,
   },
   // ... more mentors
-]
+];
 
 // Add new mock data for goals
 const goals = [
@@ -71,10 +71,10 @@ const goals = [
     ],
   },
   // ... more goals
-]
+];
 
 export default function MenteeDashboard() {
-  const [activeTab] = useState("upcoming")
+  const [activeTab] = useState("upcoming");
 
   return (
     <div className="flex min-h-screen bg-[#F9F9F9]">
@@ -119,7 +119,9 @@ export default function MenteeDashboard() {
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>Profile</DropdownMenuItem>
                 <DropdownMenuItem>Settings</DropdownMenuItem>
-                <DropdownMenuItem className="text-red-600">Logout</DropdownMenuItem>
+                <DropdownMenuItem className="text-red-600">
+                  Logout
+                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
@@ -127,9 +129,11 @@ export default function MenteeDashboard() {
 
         {/* Dashboard Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-[#16153A]">Mentee Dashboard</h1>
+          <h1 className="text-3xl font-bold text-[#16153A]">
+            Mentee Dashboard
+          </h1>
           <p className="mt-2 text-gray-500">
-            Welcome back, Sarah! Here's your learning journey overview.
+            Welcome back, Sarah! Here&apos;s your learning journey overview.
           </p>
         </div>
 
@@ -181,7 +185,9 @@ export default function MenteeDashboard() {
         <div className="mb-8">
           <Tabs defaultValue="upcoming" className="w-full">
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-2xl font-bold text-[#16153A]">Your Sessions</h2>
+              <h2 className="text-2xl font-bold text-[#16153A]">
+                Your Sessions
+              </h2>
               <TabsList>
                 <TabsTrigger value="upcoming">Upcoming</TabsTrigger>
                 <TabsTrigger value="completed">Completed</TabsTrigger>
@@ -219,8 +225,8 @@ export default function MenteeDashboard() {
                         <Button variant="outline" size="sm">
                           Reschedule
                         </Button>
-                        <Button 
-                          variant="default" 
+                        <Button
+                          variant="default"
                           size="sm"
                           className="bg-[#16153A] text-white hover:bg-[#16153A]/90"
                         >
@@ -246,7 +252,10 @@ export default function MenteeDashboard() {
           </h2>
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {recommendedMentors.map((mentor) => (
-              <Card key={mentor.id} className="overflow-hidden transition-all hover:shadow-lg">
+              <Card
+                key={mentor.id}
+                className="overflow-hidden transition-all hover:shadow-lg"
+              >
                 <CardContent className="p-6">
                   <div className="flex flex-col items-center space-y-4">
                     <div className="relative w-20 h-20 overflow-hidden rounded-full">
@@ -258,11 +267,17 @@ export default function MenteeDashboard() {
                       />
                     </div>
                     <div className="text-center">
-                      <h3 className="font-semibold text-[#16153A]">{mentor.name}</h3>
-                      <p className="text-sm text-gray-500">{mentor.expertise}</p>
+                      <h3 className="font-semibold text-[#16153A]">
+                        {mentor.name}
+                      </h3>
+                      <p className="text-sm text-gray-500">
+                        {mentor.expertise}
+                      </p>
                       <div className="flex items-center justify-center gap-1 mt-2">
                         <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
-                        <span className="text-sm font-medium">{mentor.rating}</span>
+                        <span className="text-sm font-medium">
+                          {mentor.rating}
+                        </span>
                       </div>
                       <p className="mt-2 text-sm text-gray-500">
                         ${mentor.hourlyRate}/hour
@@ -302,9 +317,7 @@ export default function MenteeDashboard() {
                         Due {new Date(goal.deadline).toLocaleDateString()}
                       </p>
                     </div>
-                    <Badge variant="secondary">
-                      {goal.progress}% Complete
-                    </Badge>
+                    <Badge variant="secondary">{goal.progress}% Complete</Badge>
                   </div>
                   <Progress value={goal.progress} className="mb-4" />
                   <div className="space-y-2">
@@ -315,13 +328,13 @@ export default function MenteeDashboard() {
                       >
                         <div
                           className={`w-4 h-4 rounded-full ${
-                            task.completed
-                              ? "bg-green-500"
-                              : "bg-gray-200"
+                            task.completed ? "bg-green-500" : "bg-gray-200"
                           }`}
                         />
                         <span
-                          className={task.completed ? "line-through text-gray-400" : ""}
+                          className={
+                            task.completed ? "line-through text-gray-400" : ""
+                          }
                         >
                           {task.title}
                         </span>
@@ -335,5 +348,5 @@ export default function MenteeDashboard() {
         </div>
       </main>
     </div>
-  )
+  );
 }

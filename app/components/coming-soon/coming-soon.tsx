@@ -482,7 +482,7 @@ export default function ComingSoon() {
           >
             <h2 className="mb-4 text-3xl font-bold md:text-4xl">Perfect for Everyone</h2>
             <p className="max-w-2xl mx-auto text-gray-400">
-              Whether you're seeking guidance or want to share your expertise
+              Whether you&apos;re seeking guidance or want to share your expertise
             </p>
           </motion.div>
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
