@@ -1,5 +1,8 @@
 import { Metadata } from 'next';
 import ComingSoon from "./components/coming-soon/coming-soon";
+import MentorProfile from './components/mentorprofile/mentorprofile';
+import Homepage from './components/home/homepage';
+import MenteeProfile from './components/menteeprofile/menteeprofile';
 
 export const metadata: Metadata = {
   title: "Saarathi Nepal",
@@ -7,5 +10,8 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-  return <ComingSoon />;
+  // return <Homepage/>
+  // return <ComingSoon />;
+  // return <MentorProfile/>;
+  return <MenteeProfile/>
 }

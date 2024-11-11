@@ -66,3 +66,16 @@ body {
     @apply bg-background text-foreground;
   }
 }
+.carousel-item {
+  transition: all 0.3s ease;
+}
+
+.carousel-button {
+  transition: opacity 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .carousel-button {
+    display: none;
+  }
+}
