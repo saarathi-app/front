@@ -1,0 +1,17 @@
+# Allow all crawlers
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://www.saarathi.app/sitemap.xml
+
+# Disallow private and system routes
+Disallow: /api/*
+Disallow: /_next/*
+Disallow: /*.json$
+Disallow: /*_buildManifest.js$
+Disallow: /*_ssgManifest.js$
+Disallow: /*.js.map$
+
+# Crawl-delay for all bots
+Crawl-delay: 10
