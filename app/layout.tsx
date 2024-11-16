@@ -3,6 +3,8 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { Titillium_Web } from "next/font/google";
 import Script from "next/script";
+import { AuthProvider } from "@/contexts/auth-context";
+import { UserSwitcher } from "./components/auth/user-switcher";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -25,7 +27,8 @@ export const metadata: Metadata = {
     default: "Saarathi - AI-Powered Global Mentorship Platform",
     template: "%s | Saarathi",
   },
-  description: "Connect with expert mentors globally. Saarathi is revolutionizing mentorship with AI-powered matching, personalized guidance, and skill development tracking.",
+  description:
+    "Connect with expert mentors globally. Saarathi is revolutionizing mentorship with AI-powered matching, personalized guidance, and skill development tracking.",
   keywords: [
     "mentorship platform",
     "global mentors",
@@ -36,7 +39,7 @@ export const metadata: Metadata = {
     "AI-powered mentoring",
     "career growth",
     "professional mentors",
-    "international mentorship"
+    "international mentorship",
   ],
   authors: [{ name: "Saarathi Team" }],
   openGraph: {
@@ -45,7 +48,8 @@ export const metadata: Metadata = {
     url: "https://www.saarathi.app",
     siteName: "Saarathi",
     title: "Saarathi - AI-Powered Global Mentorship Platform",
-    description: "Connect with expert mentors globally. Saarathi is revolutionizing mentorship with AI-powered matching and personalized guidance.",
+    description:
+      "Connect with expert mentors globally. Saarathi is revolutionizing mentorship with AI-powered matching and personalized guidance.",
     images: [
       {
         url: "https://www.saarathi.app/og-image.png",
@@ -58,7 +62,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Saarathi - AI-Powered Global Mentorship Platform",
-    description: "Connect with expert mentors globally. Join Saarathi for personalized mentorship and career guidance.",
+    description:
+      "Connect with expert mentors globally. Join Saarathi for personalized mentorship and career guidance.",
     images: ["https://www.saarathi.app/twitter-image.png"],
     creator: "@saarathi_app",
   },
@@ -81,30 +86,21 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
-        url: "/favicon/favicon-32x32.png",
+        url: "/logos/icon.png",
         sizes: "32x32",
-        type: "image/png"
+        type: "image/png",
       },
       {
-        url: "/favicon/favicon-16x16.png",
-        sizes: "16x16",
-        type: "image/png"
-      }
+        url: "/logos/icon.png",
+        sizes: "192x192",
+        type: "image/png",
+      },
     ],
-    apple: [
-      {
-        url: "/favicon/apple-touch-icon.png",
-        sizes: "180x180",
-        type: "image/png"
-      }
-    ],
-    other: [
-      {
-        rel: "mask-icon",
-        url: "/favicon/safari-pinned-tab.svg",
-        color: "#00F5EE"
-      }
-    ]
+    apple: {
+      url: "/logos/icon.png",
+      sizes: "180x180",
+      type: "image/png",
+    },
   },
   manifest: "/favicon/site.webmanifest",
 };
@@ -137,7 +133,12 @@ export default function RootLayout({
           `}
         </Script>
       </head>
-      <body className="font-titillium">{children}</body>
+      <body className="font-titillium">
+        <AuthProvider>
+          <UserSwitcher />
+          {children}
+        </AuthProvider>
+      </body>
     </html>
   );
 }

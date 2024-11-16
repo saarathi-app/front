@@ -6,11 +6,13 @@ import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
+import { routes } from "@/lib/navigation";
 
 const navigation = [
-  { name: 'About', href: '/about' },
-  { name: 'Mentors', href: '/mentors' },
-  { name: 'How it Works', href: '/how-it-works' },
+  { name: 'About', href: routes.about },
+  { name: 'Mentors', href: routes.mentors },
+  { name: 'How it Works', href: routes.howItWorks },
 ];
 
 export function Header() {
@@ -36,14 +38,27 @@ export function Header() {
     >
       <div className="max-w-6xl px-4 mx-auto">
         <div className="flex items-center justify-between h-20">
-          <Link 
-            href="/" 
-            className={cn(
-              "text-2xl font-bold transition-colors duration-300",
-              isScrolled || pathname.startsWith("/auth") ? "text-[#16153A]" : "text-white"
-            )}
-          >
-            Saarathi
+          <Link href="/" className="flex items-center space-x-2">
+            <div className="relative w-8 h-8">
+              <Image
+                src={isScrolled || pathname.startsWith("/auth") 
+                  ? "/logo.png" 
+                  : "/logos/light.png"}
+                alt="Saarathi Logo"
+                width={32}
+                height={32}
+                className="object-contain"
+                priority
+              />
+            </div>
+            <span 
+              className={cn(
+                "text-2xl font-bold transition-colors duration-300",
+                isScrolled || pathname.startsWith("/auth") ? "text-[#16153A]" : "text-white"
+              )}
+            >
+              Saarathi
+            </span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -65,7 +80,7 @@ export function Header() {
             ))}
             {pathname.startsWith("/auth") ? null : (
               <>
-                <Link href="/auth/login">
+                <Link href={routes.auth.login}>
                   <Button 
                     variant={isScrolled ? "ghost" : "outline"}
                     className={cn(
@@ -78,7 +93,7 @@ export function Header() {
                     Sign In
                   </Button>
                 </Link>
-                <Link href="/auth/signup">
+                <Link href={routes.auth.signup}>
                   <Button 
                     className="bg-[#00F5EE] text-[#16153A] hover:bg-[#00F5EE]/90"
                   >
@@ -105,7 +120,7 @@ export function Header() {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="absolute left-0 right-0 p-4 mt-2 bg-white shadow-lg md:hidden rounded-b-lg">
+          <div className="absolute left-0 right-0 p-4 mt-2 bg-white rounded-b-lg shadow-lg md:hidden">
             <div className="space-y-3">
               {navigation.map((item) => (
                 <Link
@@ -123,9 +138,9 @@ export function Header() {
                 </Link>
               ))}
               {!pathname.startsWith("/auth") && (
-                <div className="space-y-2 pt-2 border-t">
+                <div className="pt-2 space-y-2 border-t">
                   <Link
-                    href="/auth/login"
+                    href={routes.auth.login}
                     className="block w-full"
                     onClick={() => setIsMenuOpen(false)}
                   >
@@ -137,7 +152,7 @@ export function Header() {
                     </Button>
                   </Link>
                   <Link
-                    href="/auth/signup"
+                    href={routes.auth.signup}
                     className="block w-full"
                     onClick={() => setIsMenuOpen(false)}
                   >

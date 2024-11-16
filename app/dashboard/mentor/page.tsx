@@ -1,6 +1,10 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect } from "react"
+import { useRouter } from "next/navigation"
+import { useAuth } from "@/contexts/auth-context"
+import { routes } from "@/lib/navigation"
+import { getImageWithFallback } from "@/lib/image-fallback"
 import {
   Calendar,
   Bell,
@@ -52,13 +56,27 @@ const sessionRequests = [
     message: "Would love to get your insights on startup scaling strategies",
     date: "2024-04-16",
     time: "2:00 PM",
-    budget: 75,
   },
   // ... more requests
 ]
 
 export default function MentorDashboard() {
-  const [activeTab] = useState("upcoming")
+  const { user, isLoading, switchUser } = useAuth()
+  const router = useRouter()
+
+  useEffect(() => {
+    if (!isLoading && (!user || user.role !== 'mentor')) {
+      router.push(routes.auth.login)
+    }
+  }, [user, isLoading, router])
+
+  if (isLoading) {
+    return <div>Loading...</div>
+  }
+
+  if (!user || user.role !== 'mentor') {
+    return null // Will redirect in useEffect
+  }
 
   return (
     <div className="flex min-h-screen bg-[#F9F9F9]">
@@ -89,8 +107,8 @@ export default function MentorDashboard() {
                 <Button variant="ghost" className="gap-2">
                   <div className="relative w-8 h-8 overflow-hidden rounded-full">
                     <Image
-                      src="/images/mentors/mentor-1.jpg"
-                      alt="Profile"
+                      src={getImageWithFallback(user.image, "mentor")}
+                      alt={user.name}
                       fill
                       className="object-cover"
                     />
@@ -101,9 +119,21 @@ export default function MentorDashboard() {
               <DropdownMenuContent align="end" className="w-56">
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>Profile</DropdownMenuItem>
-                <DropdownMenuItem>Settings</DropdownMenuItem>
-                <DropdownMenuItem className="text-red-600">Logout</DropdownMenuItem>
+                <DropdownMenuItem onClick={() => router.push(routes.dashboard.profile)}>
+                  Profile
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => router.push(routes.profile.settings)}>
+                  Settings
+                </DropdownMenuItem>
+                <DropdownMenuItem 
+                  className="text-red-600"
+                  onClick={() => {
+                    switchUser(null)
+                    router.push(routes.home)
+                  }}
+                >
+                  Logout
+                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           </div>

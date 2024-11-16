@@ -1,6 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useAuth } from "@/contexts/auth-context";
+import { routes } from "@/lib/navigation";
+import { getImageWithFallback } from "@/lib/image-fallback";
 import {
   Calendar,
   Users,
@@ -74,6 +78,23 @@ const goals = [
 ];
 
 export default function MenteeDashboard() {
+  const { user, isLoading, switchUser } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!isLoading && (!user || user.role !== 'mentee')) {
+      router.push(routes.auth.login);
+    }
+  }, [user, isLoading, router]);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (!user || user.role !== 'mentee') {
+    return null; // Will redirect in useEffect
+  }
+
   const [activeTab] = useState("upcoming");
 
   return (
@@ -105,8 +126,8 @@ export default function MenteeDashboard() {
                 <Button variant="ghost" className="gap-2">
                   <div className="relative w-8 h-8 overflow-hidden rounded-full">
                     <Image
-                      src="/images/mentees/mentee-1.jpg"
-                      alt="Profile"
+                      src={getImageWithFallback(user.image, "mentee")}
+                      alt={user.name}
                       fill
                       className="object-cover"
                     />
@@ -117,9 +138,19 @@ export default function MenteeDashboard() {
               <DropdownMenuContent align="end" className="w-56">
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>Profile</DropdownMenuItem>
-                <DropdownMenuItem>Settings</DropdownMenuItem>
-                <DropdownMenuItem className="text-red-600">
+                <DropdownMenuItem onClick={() => router.push(routes.dashboard.profile)}>
+                  Profile
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => router.push(routes.profile.settings)}>
+                  Settings
+                </DropdownMenuItem>
+                <DropdownMenuItem 
+                  className="text-red-600"
+                  onClick={() => {
+                    router.push(routes.home)
+                    switchUser(null)
+                  }}
+                >
                   Logout
                 </DropdownMenuItem>
               </DropdownMenuContent>

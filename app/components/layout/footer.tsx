@@ -1,44 +1,126 @@
-const Footer = () => {
+import Link from "next/link"
+import Image from "next/image"
+import { Facebook, Twitter, Linkedin } from "lucide-react"
+import { routes } from "@/lib/navigation";
+
+export default function Footer() {
   return (
-    <footer className="bg-gray-100 py-8">
-      <div className="container mx-auto px-4">
-        <nav aria-label="Site map">
-          <ul className="grid grid-cols-3 gap-8">
-            <li>
-              <h2 className="font-bold mb-4">Saarathi</h2>
-              <ul className="space-y-2">
-                <li><a href="/" title="Home">Home</a></li>
-                <li><a href="/about" title="About Saarathi">About Us</a></li>
-                <li><a href="/mentors" title="Our Mentors">Mentors</a></li>
-                <li><a href="/contact" title="Contact Saarathi">Contact</a></li>
-              </ul>
-            </li>
-            <li>
-              <h2 className="font-bold mb-4">Resources</h2>
-              <ul className="space-y-2">
-                <li><a href="/blog" title="Mentorship Blog">Blog</a></li>
-                <li><a href="/sitemap.xml" title="Sitemap">Sitemap</a></li>
-                <li><a href="/privacy-policy" title="Privacy Policy">Privacy Policy</a></li>
-                <li><a href="/terms" title="Terms of Service">Terms of Service</a></li>
-              </ul>
-            </li>
-            <li>
-              <h2 className="font-bold mb-4">Connect</h2>
-              <ul className="space-y-2">
-                <li><a href="https://linkedin.com/company/saarathi-app" title="LinkedIn">LinkedIn</a></li>
-                <li><a href="https://twitter.com/saarathi_app" title="Twitter">Twitter</a></li>
-                <li><a href="https://instagram.com/saarathi_app" title="Instagram">Instagram</a></li>
-                <li><a href="/newsletter" title="Newsletter">Newsletter</a></li>
-              </ul>
-            </li>
-          </ul>
-        </nav>
-        <div className="mt-8 text-center text-sm text-gray-600">
-          <p>© 2024 Saarathi. Global AI-Powered Mentorship Platform.</p>
+    <footer className="bg-[#16153A] text-white py-12">
+      <div className="container max-w-6xl px-4 mx-auto">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
+          <div className="space-y-4">
+            <Link href="/" className="flex items-center space-x-2">
+              <div className="relative w-10 h-10">
+                <Image
+                  src="/logos/dark.png"
+                  alt="Saarathi"
+                  width={40}
+                  height={40}
+                  className="object-contain"
+                />
+              </div>
+              <span className="text-2xl font-bold text-white">
+                Saarathi
+              </span>
+            </Link>
+            <p className="text-gray-300">
+              Connecting mentors and mentees for a brighter future.
+            </p>
+          </div>
+          
+          <div>
+            <h4 className="mb-4 font-semibold">Quick Links</h4>
+            <ul className="space-y-2">
+              <li>
+                <Link 
+                  href={routes.about}
+                  className="text-gray-300 hover:text-[#00F5EE] transition-colors"
+                >
+                  About Us
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href={routes.legal.faq}
+                  className="text-gray-300 hover:text-[#00F5EE] transition-colors"
+                >
+                  FAQs
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href={routes.contact}
+                  className="text-gray-300 hover:text-[#00F5EE] transition-colors"
+                >
+                  Contact Us
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href={routes.legal.terms}
+                  className="text-gray-300 hover:text-[#00F5EE] transition-colors"
+                >
+                  Terms & Conditions
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="mb-4 font-semibold">For Mentors</h4>
+            <ul className="space-y-2">
+              <li>
+                <Link 
+                  href={routes.mentor.apply}
+                  className="text-gray-300 hover:text-[#00F5EE] transition-colors"
+                >
+                  Become a Mentor
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href={routes.mentor.resources}
+                  className="text-gray-300 hover:text-[#00F5EE] transition-colors"
+                >
+                  Mentor Resources
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="mb-4 font-semibold">Connect With Us</h4>
+            <div className="flex space-x-4">
+              <Link 
+                href="#" 
+                className="hover:text-[#00F5EE] transition-colors"
+                aria-label="Facebook"
+              >
+                <Facebook className="w-6 h-6" />
+              </Link>
+              <Link 
+                href="#" 
+                className="hover:text-[#00F5EE] transition-colors"
+                aria-label="Twitter"
+              >
+                <Twitter className="w-6 h-6" />
+              </Link>
+              <Link 
+                href="#" 
+                className="hover:text-[#00F5EE] transition-colors"
+                aria-label="LinkedIn"
+              >
+                <Linkedin className="w-6 h-6" />
+              </Link>
+            </div>
+            <div className="mt-4">
+              <p className="text-sm text-gray-400">
+                © {new Date().getFullYear()} Saarathi. All rights reserved.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </footer>
-  );
-};
-
-export default Footer; 
+  )
+} 
