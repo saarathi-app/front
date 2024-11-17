@@ -15,22 +15,10 @@ export const routes = {
   },
   profile: {
     view: (username: string) => `/profile/${username}`,
-    mentor: (id: string) => `/profile/mentor/${id}`,
-    mentee: (id: string) => `/profile/mentee/${id}`,
     settings: '/profile/settings',
   },
   onboarding: {
     mentor: '/onboarding/mentor',
     mentee: '/onboarding/mentee',
   },
-  mentor: {
-    apply: '/mentor/apply',
-    resources: '/mentor/resources',
-  },
-  legal: {
-    terms: '/terms',
-    privacy: '/privacy',
-    faq: '/faq',
-  },
-  contact: '/contact',
 } as const; 

@@ -2,10 +2,9 @@
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import Layout from "@/app/components/layout/layout";
 import { useAuth } from "@/contexts/auth-context";
-import { ProfileSettings } from "@/app/components/profile/profile-settings";
 import { routes } from "@/lib/navigation";
+import { ProfileSettings } from "@/app/components/profile/profile-settings";
 import { Sidebar } from "@/app/components/dashboard/sidebar";
 
 export default function DashboardProfile() {
@@ -23,16 +22,22 @@ export default function DashboardProfile() {
   }
 
   if (!user) {
-    return null; // Will redirect in useEffect
+    return null;
   }
 
   const profileData = {
+    id: user.id,
     name: user.name,
     email: user.email,
     image: user.image,
     role: user.role,
+    bio: user.bio || "",
     verified: user.verified,
-    bio: "", // Add any additional fields from your user object
+    expertise: user.expertise || [],
+    languages: user.languages || [],
+    experience: user.experience,
+    hourlyRate: user.hourlyRate,
+    availability: user.availability || [],
   };
 
   return (
@@ -41,7 +46,10 @@ export default function DashboardProfile() {
       <main className="flex-1 px-8 py-6 ml-64">
         <div className="max-w-4xl mx-auto">
           <h1 className="mb-8 text-3xl font-bold">Profile Settings</h1>
-          <ProfileSettings profileData={profileData} />
+          <ProfileSettings 
+            profileData={profileData}
+            userRole={user.role}
+          />
         </div>
       </main>
     </div>
