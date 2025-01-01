@@ -170,7 +170,7 @@ const MISSION_PILLARS = [
 
 export default function ComingSoon() {
   const [timeLeft, setTimeLeft] = useState(() => {
-    const targetDate = new Date("2025-03-01");
+    const targetDate = new Date("2025-04-14"); 
     const now = new Date();
     const diff = targetDate.getTime() - now.getTime();
 
@@ -195,7 +195,7 @@ export default function ComingSoon() {
 
   // Modified countdown timer logic
   useEffect(() => {
-    const targetDate = new Date("2025-01-01");
+    const targetDate = new Date("2025-04-14");
 
     const timer = setInterval(() => {
       const now = new Date();
