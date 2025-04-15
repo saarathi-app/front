@@ -170,7 +170,7 @@ const MISSION_PILLARS = [
 
 export default function ComingSoon() {
   const [timeLeft, setTimeLeft] = useState(() => {
-    const targetDate = new Date("2025-04-14"); 
+    const targetDate = new Date("2025-06-13");
     const now = new Date();
     const diff = targetDate.getTime() - now.getTime();
 
@@ -195,7 +195,7 @@ export default function ComingSoon() {
 
   // Modified countdown timer logic
   useEffect(() => {
-    const targetDate = new Date("2025-04-14");
+    const targetDate = new Date("2025-06-13");
 
     const timer = setInterval(() => {
       const now = new Date();
@@ -252,10 +252,16 @@ export default function ComingSoon() {
       });
 
       if (!response.ok) {
+        const data = await response.json();
+        if (response.status === 409) {
+          alert('This email is already registered in our waitlist.');
+          return;
+        }
         throw new Error('Failed to subscribe');
       }
 
       setIsSubscribed(true);
+      alert('Thank you for joining our waitlist! We will keep you updated on our launch.');
       setTimeout(() => setIsDialogOpen(false), 2000);
 
       // Refresh stats after successful subscription

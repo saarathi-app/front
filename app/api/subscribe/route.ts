@@ -33,6 +33,17 @@ export async function POST(request: Request) {
     const { email, type, industry } = await request.json();
 
     const sheet = await getDoc();
+    
+    // Check if the email already exists in the sheet
+    const rows = await sheet.getRows();
+    const emailExists = rows.some(row => row.get('email') === email);
+    
+    if (emailExists) {
+      return NextResponse.json(
+        { success: false, message: 'Email already registered' },
+        { status: 409 }
+      );
+    }
 
     // Add the email to the sheet
     await sheet.addRow({
