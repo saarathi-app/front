@@ -117,7 +117,22 @@ body {
 .carousel-button {
   transition: opacity 0.3s ease;
 }
+.form-select {
+  background-color: white;
+  border-color: #d1d5db; /* equivalent to border-gray-300 */
+}
 
+.form-select-content {
+  background-color: white;
+  border: 1px solid #d1d5db;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.form-input, 
+.form-textarea {
+  background-color: white;
+  border-color: #d1d5db;
+}
 @media (max-width: 768px) {
   .carousel-button {
     display: none;

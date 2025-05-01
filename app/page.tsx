@@ -6,9 +6,8 @@ import MentorProfile from "./components/mentorprofile/mentorprofile";
 import MenteeProfile from "./components/menteeprofile/menteeprofile";
 
 import Homepage from "./components/home/homepage";
-import MenteorSetup from "./components/menteeprofile/menteeregistration";
 import MentorRegistration from "./components/mentorprofile/mentorregistration";
-import MenteeRegistation from "./components/menteeprofile/menteeregistration";
+import MenteeRegistration from "./components/menteeprofile/menteeregistration";
 
 export const metadata: Metadata = {
   title: "Saarathi Nepal",
@@ -20,7 +19,7 @@ export default function Home() {
   // return <Homepage/>
   // return <ComingSoon />;
   // return <MentorProfile/>;
-  // return <MenteeProfile/>
-  return <MenteeRegistation/>
+  return <MenteeProfile/>
   // return <MentorRegistration/>
+  // return <MenteeRegistration/>
 }
