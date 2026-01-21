@@ -3,7 +3,6 @@ import { motion, useScroll, useTransform, useSpring, useMotionValue, AnimatePres
 import React, { useEffect, useState } from 'react';
 import {
   ArrowRight,
-  MapPin,
   Code2,
   Cpu,
   Globe,
@@ -448,21 +447,8 @@ const Waitlist = () => {
     name: '',
     phone: '',
     email: '',
-    address: '',
     track: ''
   });
-
-  const detectLocation = () => {
-    if ("geolocation" in navigator) {
-      setFormData(prev => ({ ...prev, address: "Scanning..." }));
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          setFormData(prev => ({ ...prev, address: `Sector ${position.coords.latitude.toFixed(2)}, ${position.coords.longitude.toFixed(2)}` }));
-        },
-        () => setFormData(prev => ({ ...prev, address: "Kathmandu (Default)" }))
-      );
-    }
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -538,25 +524,6 @@ const Waitlist = () => {
             </div>
 
             <div className="relative">
-              <input
-                required
-                type="text"
-                placeholder="Current Address"
-                className={inputClasses}
-                value={formData.address}
-                onChange={e => setFormData({ ...formData, address: e.target.value })}
-              />
-              <button
-                type="button"
-                onClick={detectLocation}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-[#001F3D]/40 hover:text-[#f8921d] p-1 transition-colors interactive"
-                title="Detect Location"
-              >
-                <MapPin size={18} />
-              </button>
-            </div>
-
-            <div className="relative">
               <select
                 required
                 className={`${inputClasses} appearance-none cursor-pointer`}
@@ -620,7 +587,7 @@ export default function SaarathiLanding() {
             <div className="flex flex-col md:flex-row gap-12 items-start">
               <p className="max-w-xl text-lg md:text-xl font-light leading-relaxed text-[#E6E6E6]/80 border-l-4 border-[#f8921d] pl-6">
                 Small batches. Real projects. <br />
-                Guaranteed career launchpad in Old Baneshwor.
+                Guaranteed career launchpad.
               </p>
 
               <div className="flex gap-12">
@@ -675,7 +642,7 @@ export default function SaarathiLanding() {
               <div>
                 <h3 className="text-2xl font-bold mb-2">Vibe Check Passed</h3>
                 <p className="text-[#E6E6E6]/60 leading-relaxed">
-                  No strict dress codes. No "Sir/Madam" formalities.
+                  No restictions. No formalities.
                   Just a space built for creators and engineers to flow.
                 </p>
               </div>
@@ -697,7 +664,7 @@ export default function SaarathiLanding() {
             {/* Wide Item */}
             <div className="md:col-span-1 bg-[#E6E6E6]/5 rounded-3xl p-6 flex flex-col justify-between border border-[#E6E6E6]/5 hover:border-[#f8921d]/30 transition-colors">
               <Wifi size={32} className="text-[#f8921d]" />
-              <span className="font-bold">Gigabit<br />WiFi</span>
+              <span className="font-bold">Zooping<br />WiFi</span>
             </div>
 
             {/* Normal Items */}
@@ -740,6 +707,7 @@ export default function SaarathiLanding() {
         <div className="w-full md:w-1/2 md:pl-12">
           <h4 className="text-[12vw] md:text-[6vw] font-black leading-none text-[#f8921d] opacity-20 mb-8 select-none">
             SAARATHI
+            ACADEMY
           </h4>
           <div className="space-y-4 text-xs md:text-sm font-mono text-[#E6E6E6]/60">
             <div className="flex items-center gap-4">

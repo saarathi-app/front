@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     template: "%s | Saarathi Academy",
   },
   description:
-    "Small batches. Real projects. Guaranteed career launchpad in Old Baneshwor. Join Saarathi Academy for hands-on tech education in Nepal.",
+    "Small batches. Real projects. Guaranteed career launchpad. Join Saarathi Academy for hands-on tech education in Nepal.",
   keywords: [
     "tech education Nepal",
     "coding bootcamp Kathmandu",

@@ -19,7 +19,7 @@ async function getDoc() {
   let sheet = doc.sheetsByIndex[0];
   if (!sheet) {
     sheet = await doc.addSheet({
-      headerValues: ['name', 'phone', 'email', 'address', 'track', 'timestamp']
+      headerValues: ['name', 'phone', 'email', 'track', 'timestamp']
     });
   }
   
@@ -28,9 +28,9 @@ async function getDoc() {
 
 export async function POST(request: Request) {
   try {
-    const { name, phone, email, address, track } = await request.json();
+    const { name, phone, email, track } = await request.json();
 
-    if (!name || !phone || !email || !address || !track) {
+    if (!name || !phone || !email || !track) {
       return NextResponse.json(
         { success: false, message: 'All fields are required' },
         { status: 400 }
@@ -53,7 +53,6 @@ export async function POST(request: Request) {
       name,
       phone,
       email,
-      address,
       track,
       timestamp: new Date().toISOString(),
     });
