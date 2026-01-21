@@ -450,10 +450,28 @@ const Waitlist = () => {
     track: ''
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setFormState('loading');
-    setTimeout(() => setFormState('success'), 1500);
+    
+    try {
+      const response = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setFormState('success');
+      } else {
+        const data = await response.json();
+        setFormState('idle');
+        alert(data.message || 'Failed to submit. Please try again.');
+      }
+    } catch (error) {
+      setFormState('idle');
+      alert('An error occurred. Please try again.');
+    }
   };
 
   const inputClasses = "interactive w-full bg-[#E6E6E6] border-2 border-transparent focus:border-[#f8921d] rounded-lg px-4 py-3 text-sm font-bold text-[#001F3D] focus:outline-none transition-all placeholder:text-[#001F3D]/30 placeholder:font-normal";
