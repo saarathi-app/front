@@ -2,7 +2,6 @@ import { GoogleSpreadsheet } from 'google-spreadsheet';
 import { JWT } from 'google-auth-library';
 import { NextResponse } from 'next/server';
 
-// Your Google Sheets credentials
 const GOOGLE_SHEETS_CLIENT_EMAIL = process.env.GOOGLE_SHEETS_CLIENT_EMAIL;
 const GOOGLE_SHEETS_PRIVATE_KEY = process.env.GOOGLE_SHEETS_PRIVATE_KEY;
 const SPREADSHEET_ID = process.env.SPREADSHEET_ID;
@@ -17,11 +16,10 @@ async function getDoc() {
   const doc = new GoogleSpreadsheet(SPREADSHEET_ID!, jwt);
   await doc.loadInfo();
   
-  // Get the first sheet or create it if it doesn't exist
   let sheet = doc.sheetsByIndex[0];
   if (!sheet) {
     sheet = await doc.addSheet({
-      headerValues: ['email', 'type', 'industry', 'timestamp']
+      headerValues: ['name', 'phone', 'email', 'address', 'track', 'timestamp']
     });
   }
   
@@ -30,11 +28,17 @@ async function getDoc() {
 
 export async function POST(request: Request) {
   try {
-    const { email, type, industry } = await request.json();
+    const { name, phone, email, address, track } = await request.json();
+
+    if (!name || !phone || !email || !address || !track) {
+      return NextResponse.json(
+        { success: false, message: 'All fields are required' },
+        { status: 400 }
+      );
+    }
 
     const sheet = await getDoc();
     
-    // Check if the email already exists in the sheet
     const rows = await sheet.getRows();
     const emailExists = rows.some(row => row.get('email') === email);
     
@@ -45,19 +49,20 @@ export async function POST(request: Request) {
       );
     }
 
-    // Add the email to the sheet
     await sheet.addRow({
+      name,
+      phone,
       email,
-      type,
-      industry: industry || 'N/A',
+      address,
+      track,
       timestamp: new Date().toISOString(),
     });
 
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error('Error saving email:', error);
+    console.error('Error saving application:', error);
     return NextResponse.json(
-      { error: 'Failed to save email' },
+      { error: 'Failed to save application' },
       { status: 500 }
     );
   }
@@ -68,18 +73,20 @@ export async function GET() {
     const sheet = await getDoc();
     const rows = await sheet.getRows();
     
-    // Get unique industries (excluding N/A and empty values)
-    const uniqueIndustries = new Set(
+    const uniqueTracks = new Set(
       rows
-        .map(row => row.get('industry'))
-        .filter(industry => industry && industry !== 'N/A')
+        .map(row => row.get('track'))
+        .filter(track => track && track !== 'N/A')
     );
     
     const stats = {
-      mentors: rows.filter(row => row.get('type') === 'mentor').length,
-      mentees: rows.filter(row => row.get('type') === 'mentee').length,
-      industries: uniqueIndustries.size, // Use actual count of unique industries
-      waitlist: rows.length,
+      totalApplications: rows.length,
+      uniqueTracks: uniqueTracks.size,
+      recentApplications: rows.slice(-10).map(row => ({
+        name: row.get('name'),
+        track: row.get('track'),
+        timestamp: row.get('timestamp'),
+      })),
     };
 
     return NextResponse.json(stats);
@@ -90,4 +97,4 @@ export async function GET() {
       { status: 500 }
     );
   }
-} 
+}

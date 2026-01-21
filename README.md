@@ -1,36 +1,116 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Saarathi Academy
+
+**Anti-Factory Education** - Small batches. Real projects. Guaranteed career launchpad in Old Baneshwor, Kathmandu.
+
+## Tech Stack
+
+- **Framework**: Next.js 14
+- **UI**: React 18 with Framer Motion
+- **Styling**: Tailwind CSS
+- **Icons**: Lucide React
+- **Backend**: Google Sheets API (waitlist storage)
+- **Language**: TypeScript
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 20+ installed
+- npm or yarn package manager
+
+### Installation
+
+```bash
+npm install
+```
+
+### Environment Variables
+
+Create a `.env` file in the root directory with:
+
+```env
+GOOGLE_SHEETS_CLIENT_EMAIL=your-service-account-email
+GOOGLE_SHEETS_PRIVATE_KEY=your-private-key
+SPREADSHEET_ID=your-spreadsheet-id
+```
+
+### Development
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Production Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+## Features
 
-To learn more about Next.js, take a look at the following resources:
+- **Custom Cursor**: Interactive custom cursor for desktop users
+- **Track Directory**: Browse 10 specialized learning tracks across 4 schools
+- **Skill Modules**: Additional 5 skill upgrade modules
+- **Waitlist Form**: Google Sheets integration for application collection
+- **Location Detection**: Geolocation feature for address input
+- **Responsive Design**: Mobile-first approach with desktop enhancements
+- **Smooth Animations**: Framer Motion powered interactions
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+├── app/
+│   ├── api/
+│   │   └── subscribe/
+│   │       └── route.ts          # Google Sheets API endpoint
+│   ├── fonts/                     # Custom fonts
+│   ├── globals.css                # Global styles
+│   ├── layout.tsx                 # Root layout
+│   └── page.tsx                   # Main landing page
+├── public/                        # Static assets
+└── package.json
+```
 
-## Deploy on Vercel
+## API Endpoints
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### POST /api/subscribe
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Submit application to waitlist.
+
+**Request Body:**
+```json
+{
+  "name": "Full Name",
+  "phone": "+977XXXXXXXXXX",
+  "email": "email@example.com",
+  "address": "Location",
+  "track": "Selected Track"
+}
+```
+
+**Response:**
+```json
+{
+  "success": true
+}
+```
+
+### GET /api/subscribe
+
+Get application statistics.
+
+**Response:**
+```json
+{
+  "totalApplications": 100,
+  "uniqueTracks": 8,
+  "recentApplications": [...]
+}
+```
+
+## License
+
+© 2026 Saarathi Academy. All rights reserved.
